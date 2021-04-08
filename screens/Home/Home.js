@@ -21,7 +21,7 @@ const styles =  StyleSheet.create({
     },
     hello:{
         fontSize: 12,
-        fontWeight: 700,
+        fontWeight: "700",
     }
 })
 
