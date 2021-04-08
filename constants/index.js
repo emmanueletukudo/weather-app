@@ -1,4 +1,4 @@
-import icons from "../constants/images";
+import icons from "./icons";
 
 export {
     icons,
