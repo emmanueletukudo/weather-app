@@ -9,7 +9,7 @@ const Home = () => {
             city: "New York",
             temp: 283.88,
             main: "Clouds",
-            icon: icons.rainy,
+            icon: icons.thunder,
             description: "overcast clouds",
         },
         {
@@ -25,7 +25,7 @@ const Home = () => {
             city: "Chicago",
             temp: 283.88,
             main: "Rain",
-            icon: icons.rainy,
+            icon: icons.metro,
             description: "overcast clouds",
         },
 
@@ -37,17 +37,16 @@ const Home = () => {
             style={styles.weatherContainer}
             >
                 <Text style={styles.city}>{item.city}</Text>
-                <View style={[ styles.weatherDtails1, styles.itmeShadow]}>
-                    <View style={styles.weatherDetailsWrapper}>
-                        <Text style={styles.main}>{item.main}</Text>
-                        <Text style={styles.temp}>{item.temp}</Text>
-                    </View>
-                </View>
+                    
                 <Image 
                 source={item.icon} 
                 resizeMode="cover"
                 style = {styles.icon}
                 />
+                <View style={styles.weatherDetailsWrapper}>
+                        <Text style={styles.main}>{item.main}</Text>
+                        <Text style={styles.temp}>{item.temp}</Text>
+                    </View>
             </TouchableOpacity>
         )
     }
@@ -57,8 +56,8 @@ const Home = () => {
            horizontal
            showsHorizontalScrollIndicator={false} 
            data={weatherData}
-           keyExtractor = {item => item.id.toString()}
-           renderItem={(item, index) => renderWeather(item, index)}
+           keyExtractor={item => item.id.toString()}
+           renderItem ={({item, index}) => renderWeather(item, index)}
            />
         </View>
     )
@@ -67,9 +66,11 @@ const Home = () => {
 const styles =  StyleSheet.create({
     constainer: {
         flex: 1,
+        backgroundColor: "#000",
+        alignItems: "center",
+        padding: 70,
     },
     weatherContainer: {
-        height: "100%", 
         width: 350, 
         justifyContent: "center", 
         marginHorizontal: 14,
@@ -86,7 +87,7 @@ const styles =  StyleSheet.create({
     weatherDtails1:{
         flex: 1,
         justifyContent: "center",
-        marginTop: 15,
+        marginTop: "20%",
         borderRadius: 10,
         marginRight: 15,
         paddingRight: 12,
@@ -97,14 +98,6 @@ const styles =  StyleSheet.create({
         fontSize: 14,
         fontWeight: "700",
     },
-    itmeShadow:{
-        position: "absolute",
-        top: 160,
-        left: 30,
-        flexDirection: "column",
-        marginLeft: 25,
-        marginBottom: 8,
-    },
     main:{
         color: "#ffffff",
         fontSize: 14,
@@ -112,8 +105,8 @@ const styles =  StyleSheet.create({
     },
 
     city:{
-        color: "#333", 
-        fontSize: 20, 
+        color: "#ffffff", 
+        fontSize: 40, 
         fontWeight:"700"
     },
     weatherDetails: {
@@ -121,13 +114,13 @@ const styles =  StyleSheet.create({
         fontWeight: "400",
     },
     weatherDetailsWrapper: {
-        flexDirection: "column"
+        flexDirection: "column",
+        alignContent: "center",
+        marginTop: "40%",
     },
     icon: {
-        position: "absolute",
-        top: 25,
-        right: 20,
-        width: "90%",
+        top: "10%",
+        width: 200,
         height: 200,
     }
 })
