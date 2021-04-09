@@ -1,10 +1,10 @@
 import React from "react";
 import {StyleSheet, Text, View} from "react-native";
+import {data} from "../constants/"
 
 
 const Home = () => {
-    let a  = 8;
-    console.log(a);
+    const [weatherData, setWeatherData] = React.useState(data.getByCity("New York"));
     return(
         <View style={styles.constainer}>
             <Text style={styles.hello}>
