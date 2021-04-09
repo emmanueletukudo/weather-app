@@ -11,7 +11,7 @@ const metro         = require("../assets/icons/metro-weather.png");
 const rainy         = require("../assets/icons/feather-cloud-rain.png");
 
 
-export {
+export default {
     location,
     sheild,
     settings,
