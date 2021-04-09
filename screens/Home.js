@@ -3,9 +3,11 @@ import {StyleSheet, Text, View} from "react-native";
 
 
 const Home = () => {
+    let a  = 8;
+    console.log(a);
     return(
         <View style={styles.constainer}>
-            <Text>
+            <Text style={styles.hello}>
                 Hello World
             </Text>
 
@@ -16,11 +18,14 @@ const Home = () => {
 const styles =  StyleSheet.create({
     constainer: {
         flex: 1,
-        alignContent: "center",
+
     },
     hello:{
+        flex: 1,
+        alignItems: "center",
         fontSize: 12,
         fontWeight: "700",
+        color: "#000"
     }
 })
 
