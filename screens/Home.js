@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, View, TouchableOpacity} from "react-native";
+import {StyleSheet, Text, Image, View, TouchableOpacity, FlatList} from "react-native";
 import axios from "axios";
 import {data, icons} from "../constants/"
 const Home = () => {
@@ -8,6 +8,7 @@ const Home = () => {
             id: 0,
             city: "New York",
             temp: 283.88,
+            main: "Clouds",
             icon: icons.rainy,
             description: "overcast clouds",
         },
@@ -15,6 +16,7 @@ const Home = () => {
             id: 1,
             city: "San Francisco",
             temp: 285.52,
+            main: "Rain",
             icon: icons.rainy,
             description: "broken clouds",
         },
@@ -22,6 +24,7 @@ const Home = () => {
             id: 2,
             city: "Chicago",
             temp: 283.88,
+            main: "Rain",
             icon: icons.rainy,
             description: "overcast clouds",
         },
@@ -31,35 +34,32 @@ const Home = () => {
     function renderWeather(item, index){
         return(
             <TouchableOpacity 
-            style={{height: 300, width: 200, justifyContent: "center", marginHorizontal: SIZES.base }}
+            style={styles.weatherContainer}
             >
-                <Text style={{color: "#333", fontSize: 20, fontWeight:"700"}}>{item.city}</Text>
-                <View style={[ styles.weatherDtails1, styles.featuredShadow]}>
-                    <View style={}>
-                        <Text style={styles.city}>{item.name}</Text>
+                <Text style={styles.city}>{item.city}</Text>
+                <View style={[ styles.weatherDtails1, styles.itmeShadow]}>
+                    <View style={styles.weatherDetailsWrapper}>
+                        <Text style={styles.main}>{item.main}</Text>
                         <Text style={styles.temp}>{item.temp}</Text>
                     </View>
                 </View>
                 <Image 
                 source={item.icon} 
                 resizeMode="cover"
-                style = {{
-                    position: "absolute",
-                    top: 25,
-                    right: 20,
-                    width: "90%",
-                    height: 200,
-                }}
+                style = {styles.icon}
                 />
             </TouchableOpacity>
         )
     }
     return(
         <View style={styles.constainer}>
-            <Text style={styles.hello}>
-                Hello World
-            </Text>
-
+           <FlatList
+           horizontal
+           showsHorizontalScrollIndicator={false} 
+           data={weatherData}
+           keyExtractor = {item => item.id.toString()}
+           renderItem={(item, index) => renderWeather(item, index)}
+           />
         </View>
     )
 }
@@ -67,7 +67,13 @@ const Home = () => {
 const styles =  StyleSheet.create({
     constainer: {
         flex: 1,
-
+    },
+    weatherContainer: {
+        height: "100%", 
+        width: 350, 
+        justifyContent: "center", 
+        marginHorizontal: 14,
+        backgroundColor: "#000",
     },
     hello:{
         flex: 1,
@@ -99,15 +105,30 @@ const styles =  StyleSheet.create({
         marginLeft: 25,
         marginBottom: 8,
     },
-    city:{
+    main:{
         color: "#ffffff",
         fontSize: 14,
         marginTop: 15
     },
+
+    city:{
+        color: "#333", 
+        fontSize: 20, 
+        fontWeight:"700"
+    },
     weatherDetails: {
         fontSize: 17,
         fontWeight: "400",
-
+    },
+    weatherDetailsWrapper: {
+        flexDirection: "column"
+    },
+    icon: {
+        position: "absolute",
+        top: 25,
+        right: 20,
+        width: "90%",
+        height: 200,
     }
 })
 

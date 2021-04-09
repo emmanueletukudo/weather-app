@@ -8,7 +8,6 @@
 import React from 'react';
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer, DefaultTheme} from "@react-navigation/native";
-import {View, Text} from "react-native";
 import {Home} from "./screens/";
 
 const theme = {
